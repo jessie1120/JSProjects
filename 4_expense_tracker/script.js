@@ -16,6 +16,34 @@ const dummyTransactions = [
 
 let transactions = dummyTransactions;
 
+// Add transaction
+function addTransaction(e) {
+    e.preventDefault();
+
+    if($('#text').val().trim() === '' || $('#amount').val().trim() === '') {
+        alert('Please add a text and amount');
+    } else {
+        const transaction = {
+            id: generateID(),
+            text: $('#text').val(),
+            amount: +$('#amount').val()
+        }; 
+        // .push = 添加一個或多個元素至陣列的末端，並且回傳陣列的新長度。
+        // https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/push
+        transactions.push(transaction);
+
+        addTransactionDOM(transaction);
+        updateValues();
+
+        $('#text').val(''); 
+        $('#amount').val('');
+    }
+}
+// Generate random ID  建立隨機ID
+// 亂數產生：https://ithelp.ithome.com.tw/articles/10197904
+function generateID() {
+    return Math.floor(Math.random() * 1e5);
+}
 // Add transactions to DOM list
 function addTransactionDOM(transaction) {
     // 先取正負
@@ -77,4 +105,7 @@ function init() {
     transactions.forEach(addTransactionDOM);
     updateValues()
 }
-init(); 
+init();
+
+// event listener
+$('#form').submit(addTransaction);
