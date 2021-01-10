@@ -55,7 +55,7 @@ function addTransactionDOM(transaction) {
     item.addClass(transaction.amount < 0 ? 'minus' : 'plus');
     // Math.abs() 傳回絕對值 => 這邊用意是去掉負數的減號
     item.html(`${transaction.text} <span>${sign}${Math.abs(transaction.amount)}</span> 
-    <button class="delete-btn">x</button> 
+    <button class="delete-btn" onclick="removeTransaction(${transaction.id})">x</button>
     `);
     // .appendTo = 將內容添加至某個選取器
     // .append = 在某個選取器裡添加內容
@@ -97,6 +97,14 @@ function updateValues() {
         $('#balance').text(`$${total}`);
         $('#money-plus').text(`$${income}`);
         $('#money-minus').text(`$${expense}`);
+}
+// Remove transaction
+function removeTransaction(id) {
+    transactions = transactions
+        .filter(function(transaction) {
+            return transaction.id !== id;
+        })
+    init();
 }
 
 // Init app 初始化資料並顯示在畫面上
