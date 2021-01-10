@@ -1,20 +1,14 @@
-$('#balance')
-$('#money-plus')
-$('#money-minus')
-$('#list')
-$('#form')
-$('#text')
-$('#amount')
-
 // 示範物件，之後會由我們輸入的資料取代。
-const dummyTransactions = [
-  { id: 1, text: 'Flower', amount: -20 },
-  { id: 2, text: 'Salary', amount: 300 },
-  { id: 3, text: 'Book', amount: -10 },
-  { id: 4, text: 'Camera', amount: 150 }
-];
-
-let transactions = dummyTransactions;
+// const dummyTransactions = [
+//   { id: 1, text: 'Flower', amount: -20 },
+//   { id: 2, text: 'Salary', amount: 300 },
+//   { id: 3, text: 'Book', amount: -10 },
+//   { id: 4, text: 'Camera', amount: 150 }
+// ];
+// JSON.parse：轉換拉出來的字串資料 => 陣列array
+const localStorageTransactions = JSON.parse(localStorage.getItem('transactions'));
+//條件判斷，需不為空值
+let transactions = localStorage.getItem('transactions') !== null ? localStorageTransactions : [];
 
 // Add transaction
 function addTransaction(e) {
@@ -34,6 +28,7 @@ function addTransaction(e) {
 
         addTransactionDOM(transaction);
         updateValues();
+        updateLocalStorage();
 
         $('#text').val(''); 
         $('#amount').val('');
@@ -104,7 +99,12 @@ function removeTransaction(id) {
         .filter(function(transaction) {
             return transaction.id !== id;
         })
+    updateLocalStorage()
     init();
+}
+// Update local storage transactions
+function updateLocalStorage() {
+    localStorage.setItem('transactions', JSON.stringify(transactions));
 }
 
 // Init app 初始化資料並顯示在畫面上
