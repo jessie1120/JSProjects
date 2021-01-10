@@ -34,9 +34,47 @@ function addTransactionDOM(transaction) {
     item.appendTo('#list'); // 相等於 $('#list').append(item);
   }
 
+// update the balance, income and expense
+function updateValues() {
+    const amounts = transactions
+        .map(function(transaction) {
+            return transaction.amount;
+        })
+    // reduce()方法：累加陣列中數值
+    // https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+    const total = amounts
+        .reduce((function(accumulator, item) {
+            return accumulator += item;    // accumulator = accumulator + item;
+        }),0)
+        .toFixed(2);
+    // filter()方法： 經過內部函式處理後，將通過之元素回傳為新陣列
+    // https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+    const income = amounts
+        .filter(function(item) {
+            return item > 0;
+        })
+        .reduce((function(accumulator, item) {
+            return accumulator += item;    
+        }),0) 
+        .toFixed(2);
+    const expense = (amounts
+        .filter(function(item) {
+        return item < 0;
+        })
+        .reduce((function(accumulator, item) {
+            return accumulator += item;    
+        }),0) * -1)
+        .toFixed(2);   
+
+        $('#balance').text(`$${total}`);
+        $('#money-plus').text(`$${income}`);
+        $('#money-minus').text(`$${expense}`);
+}
+
 // Init app 初始化資料並顯示在畫面上
 function init() {
     $('#list').html('');
     transactions.forEach(addTransactionDOM);
+    updateValues()
 }
 init(); 
