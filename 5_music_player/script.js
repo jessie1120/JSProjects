@@ -4,7 +4,7 @@ $('#prev')
 $('#next')
 $('#audio')
 $('#progress')
-$('#progress_container')
+$('#progress-container')
 $('#title')
 $('#cover')
 
@@ -25,7 +25,7 @@ function loadSong(song){
 }
 
 // play song
-function playsong(){
+function playSong(){
     $('#music-container').addClass('play');
     $('#play').find('i').attr('class', 'fas fa-pause');
     $('#audio')[0].play();
@@ -38,6 +38,26 @@ function pauseSong(){
     $('#audio')[0].pause();
 }
 
+// previous song
+function prevSong() {
+    songIndex--;
+    if(songIndex < 0) {
+        songIndex = songs.length - 1;
+    }
+    loadSong(songs[songIndex]);
+    playSong();
+}
+
+// next song
+function nextSong() {
+    songIndex++;
+    if(songIndex > songs.length - 1) {
+        songIndex = 0;
+    }
+    loadSong(songs[songIndex]);
+    playSong();
+}
+
 // Event listeners 
 $('#play').click(function(){
     const isPlaying = $('#music-container').hasClass('play');
@@ -45,6 +65,15 @@ $('#play').click(function(){
     if (isPlaying === true){
         pauseSong();
     } else {
-        playsong();
+        playSong();
     }
+})
+
+// change song
+
+$('#prev').click(function() {
+    prevSong();
+})
+$('#next').click(function() {
+    nextSong();
 })
