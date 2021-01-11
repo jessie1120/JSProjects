@@ -1,4 +1,4 @@
-$('#music_container')
+$('#music-container')
 $('#play')
 $('#prev')
 $('#next')
@@ -23,3 +23,28 @@ function loadSong(song){
     $('#audio').attr('src', `music/${song}.mp3`);
     $('#cover').attr('src', `images/${song}.jpg`);
 }
+
+// play song
+function playsong(){
+    $('#music-container').addClass('play');
+    $('#play').find('i').attr('class', 'fas fa-pause');
+    $('#audio')[0].play();
+}
+
+// pause song
+function pauseSong(){
+    $('#music-container').removeClass('play');
+    $('#play').find('i').attr('class', 'fas fa-play');
+    $('#audio')[0].pause();
+}
+
+// Event listeners 
+$('#play').click(function(){
+    const isPlaying = $('#music-container').hasClass('play');
+
+    if (isPlaying === true){
+        pauseSong();
+    } else {
+        playsong();
+    }
+})
