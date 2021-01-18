@@ -52,3 +52,7 @@ $(window).scroll(function() {
         showLoading();
     }
 })
+
+$('input').on('input', function() {
+    console.log($(this).val())
+})
