@@ -35,9 +35,20 @@ function showPosts() {
 
 showPosts();
 
+function showLoading() {
+    $('.loader').addClass('show');
+    setTimeout(function () {
+        $('.loader').removeClass('show');
+    },1000)
+    setTimeout(function () {
+        page++;
+        showPosts();
+    },200)
+}
+
 // event listener 
 $(window).scroll(function() {
     if ($(document).scrollTop() + $(window).height() > $(document).height() - 5) {
-        console.log('Done');
+        showLoading();
     }
 })
