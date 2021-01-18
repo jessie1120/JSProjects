@@ -32,3 +32,12 @@ function showPosts() {
         }
     })
 }
+
+showPosts();
+
+// event listener 
+$(window).scroll(function() {
+    if ($(document).scrollTop() + $(window).height() > $(document).height() - 5) {
+        console.log('Done');
+    }
+})
