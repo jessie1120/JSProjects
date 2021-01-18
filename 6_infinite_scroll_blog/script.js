@@ -7,7 +7,7 @@ function showPosts() {
         method: 'get',
         dataType: 'json',
         success: function (data) {
-            $.each(data,function(index,post){
+            $.each(data, function (index, post) {
                 const postDiv = $('<div/>').addClass('post');
                 postDiv.html(`
                 <div class="number">${post.id}</div>
@@ -39,20 +39,26 @@ function showLoading() {
     $('.loader').addClass('show');
     setTimeout(function () {
         $('.loader').removeClass('show');
-    },1000)
+    }, 1000)
     setTimeout(function () {
         page++;
         showPosts();
-    },200)
+    }, 200)
+}
+
+function filterCheck() {
+    const text = $('input').val().toLowerCase()
+    $('.post').css('display','none')
+    $(`.post:contains('${text}')`).css('display','flex')
 }
 
 // event listener 
-$(window).scroll(function() {
+$(window).scroll(function () {
     if ($(document).scrollTop() + $(window).height() > $(document).height() - 5) {
         showLoading();
     }
 })
 
-$('input').on('input', function() {
-    console.log($(this).val())
+$('input').on('input', function () {
+    filterCheck();
 })
