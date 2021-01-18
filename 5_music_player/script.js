@@ -77,3 +77,11 @@ $('#prev').click(function() {
 $('#next').click(function() {
     nextSong();
 })
+
+// progress bar event
+$('#audio').on('timeupdate', function() {
+    const duration = $('#audio')[0].duration
+    const currentTime = $('#audio')[0].currentTime
+    const progressPercent = (currentTime / duration) * 100;
+    $('#progress').css('width', `${progressPercent}%`)
+})
