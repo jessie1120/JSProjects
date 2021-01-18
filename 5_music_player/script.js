@@ -85,3 +85,11 @@ $('#audio').on('timeupdate', function() {
     const progressPercent = (currentTime / duration) * 100;
     $('#progress').css('width', `${progressPercent}%`)
 })
+$('#progress-container').click(function(e) {
+    const duration = $('#audio')[0].duration;
+    const width = $('#progress-container').width() 
+    const offsetX = $(e.target).offset().left;
+    const clickX = e.pageX 
+    const percent = ((clickX - offsetX) / width)
+    $('#audio')[0].currentTime = percent * duration
+});
