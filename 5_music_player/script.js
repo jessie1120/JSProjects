@@ -1,13 +1,3 @@
-$('#music-container')
-$('#play')
-$('#prev')
-$('#next')
-$('#audio')
-$('#progress')
-$('#progress-container')
-$('#title')
-$('#cover')
-
 // titles array
 const songs = ['hey', 'summer', 'ukulele'];
 
@@ -93,3 +83,7 @@ $('#progress-container').click(function(e) {
     const percent = ((clickX - offsetX) / width)
     $('#audio')[0].currentTime = percent * duration
 });
+// end song
+$('#audio').on('ended', function() {
+    nextSong();
+})
