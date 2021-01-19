@@ -3,6 +3,9 @@ let time = 30
 
 $('#text').focus();
 
+getRandomWord();
+countDown ();
+
 function getRandomWord() {
     $.ajax({
         url: 'https://random-word-api.herokuapp.com/word?number=1',
@@ -13,15 +16,25 @@ function getRandomWord() {
         }  
     })
 }
-getRandomWord();
 
 function countDown () {
    timeInterval = setInterval(function () {
        time--;
        $('#time').text(`${time}s`)
-   },1000) 
+       if (time === 0) {
+        clearInterval(timeInterval);
+        gameOver();
+    }
+   },1000)   
 }
-countDown ();
+
+function gameOver () {
+    $('#end-game-container').html(`
+    <h1>Time ran out</h1>
+    <p>Your final score is ${score}</p>
+    <button onclick="location.reload()">Reload</button>
+  `).css('display', 'flex')
+}
 // Event Listener
 
 $('#text').on('input', function() {
