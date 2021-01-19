@@ -1,5 +1,7 @@
 let score = 0
-let time = 30 
+let time = 10 
+let difficulty = localStorage.getItem('difficulty') !== null ? localStorage.getItem('difficulty') : 'medium';
+$('#difficulty').val(difficulty);
 
 $('#text').focus();
 
@@ -36,7 +38,6 @@ function gameOver () {
   `).css('display', 'flex')
 }
 // Event Listener
-
 $('#text').on('input', function() {
     const typeWord = $(this).val()
     const randomWord = $('h1').text()
@@ -46,4 +47,12 @@ $('#text').on('input', function() {
         score++
         $('#score').text(score);  
     }
+})
+$('#settings-btn').click(function() {
+    $('#settings').toggleClass('hide');
+})
+
+$('#settings-form').change(function() {
+    difficulty = $('#difficulty').val();
+    localStorage.setItem('difficulty', difficulty)
 })
