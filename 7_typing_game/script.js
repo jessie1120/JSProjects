@@ -1,4 +1,7 @@
 let score = 0
+let time = 30 
+
+$('#text').focus();
 
 function getRandomWord() {
     $.ajax({
@@ -12,6 +15,13 @@ function getRandomWord() {
 }
 getRandomWord();
 
+function countDown () {
+   timeInterval = setInterval(function () {
+       time--;
+       $('#time').text(`${time}s`)
+   },1000) 
+}
+countDown ();
 // Event Listener
 
 $('#text').on('input', function() {
