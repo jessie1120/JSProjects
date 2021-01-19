@@ -46,6 +46,13 @@ $('#text').on('input', function() {
         $(this).val('');
         score++
         $('#score').text(score);  
+        if (difficulty === 'hard') {
+            time += 2;
+          } else if (difficulty === 'medium') {
+            time += 3;
+          } else {
+            time += 5;
+          }
     }
 })
 $('#settings-btn').click(function() {
