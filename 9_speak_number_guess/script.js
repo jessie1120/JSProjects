@@ -53,3 +53,7 @@ recognition.start();
 // Event Listener
 
 recognition.addEventListener('result', getSpeakWord);
+
+recognition.addEventListener('end', function () {
+    recognition.start();
+});
