@@ -1,5 +1,4 @@
 const randomNumber = generateRandomNumber()
-console.log(randomNumber)
 
 function generateRandomNumber() {
     return Math.floor(Math.random() * 100) + 1;
@@ -17,21 +16,22 @@ function showMessage(msg) {
     <span class="box">${msg}</span>
     `)
 }
+
 function checkNumber(msg) {
     const number = +msg;
 
     if (Number.isNaN(number)) {
         $('#msg').append('<div>That is not a valid number</div>');
-      return;
+        return;
     }
 
     if (number > 100 || number < 1) {
-        $('#msg').append('<div>Number must be between 1 and 100</div>') ;
-      return;
+        $('#msg').append('<div>Number must be between 1 and 100</div>');
+        return;
     }
-  
-    if (number=== randomNumber) {
-      $('body').html(`
+
+    if (number === randomNumber) {
+        $('body').html(`
       <h2>Congrats! You have guessed the number! <br><br>
       It was ${number}</h2>
       <button class="play-again" id="play-again">Play Again</button>
@@ -41,7 +41,7 @@ function checkNumber(msg) {
     } else {
         $('#msg').append('<div>GO HIGHER</div>');
     }
-  }
+}
 
 window.SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -57,3 +57,9 @@ recognition.addEventListener('result', getSpeakWord);
 recognition.addEventListener('end', function () {
     recognition.start();
 });
+
+$('body').click(function (e) {
+    if (e.target.id == 'play-again') {
+        window.location.reload();
+    }
+})
