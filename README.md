@@ -8,3 +8,4 @@
 | 06  |  Infinite Scroll Blog  | [Demo](https://jessie1120.github.io/JSProjects/6_infinite_scroll_blog/index.html)  |
 | 07  |  Typing Game  | [Demo](https://jessie1120.github.io/JSProjects/7_typing_game/index.html)  |
 | 08  |  Speak Number Guess  |  [Demo](https://jessie1120.github.io/JSProjects/8_speak_number_guess/index.html)
+| 09  |  New Year Countdown  |  [Demo](https://jessie1120.github.io/JSProjects/9_new_year_countdown/index.html)
