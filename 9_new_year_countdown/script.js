@@ -26,3 +26,8 @@ function addStandardTime(time) {
 
 showCountdown();
 setInterval(showCountdown, 1000);
+
+setTimeout(function() {
+    $('#loading').remove();
+    $('#countdown').css('display', 'flex')
+  }, 1000);

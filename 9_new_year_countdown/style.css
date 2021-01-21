@@ -46,8 +46,7 @@ h1 span {
 }
 
 .countdown {
-  display: flex;
-  /* display: none; */
+  display: none;
   transform: scale(2);
 }
 
