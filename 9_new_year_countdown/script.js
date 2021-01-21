@@ -24,3 +24,4 @@ function addStandardTime(time) {
 }
 
 showCountdown();
+setInterval(showCountdown, 1000);
