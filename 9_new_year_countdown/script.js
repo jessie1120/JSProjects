@@ -10,7 +10,17 @@ function showCountdown() {
     const hours = Math.floor(countdownTime / 1000 / 60 / 60) % 24;
     const days = Math.floor(countdownTime / 1000 / 60 / 60 / 24);
     
-    console.log(days)
+    $('#seconds').text(addStandardTime(seconds));
+    $('#minutes').text(addStandardTime(minutes));
+    $('#hours').text(addStandardTime(hours));
+    $('#days').text(addStandardTime(days));
+}
+function addStandardTime(time) {
+    if (time < 10) {
+        return '0' + time;
+    }else {
+        return time;
+    }
 }
 
 showCountdown();
