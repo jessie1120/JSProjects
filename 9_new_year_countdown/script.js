@@ -1,5 +1,6 @@
 const currentYear = new Date().getFullYear();
 const newYearTime = new Date(`January 01 ${currentYear + 1} 00:00:00`);
+$('h1').html(`New Year Countdown To <span>${currentYear +1}</span>`);
 
 function showCountdown() {
     const currentTime = new Date();
