@@ -40,3 +40,4 @@ function createList() {
         
     })
 }
+$('#draggable-list').sortable();
