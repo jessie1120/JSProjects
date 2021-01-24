@@ -15,6 +15,10 @@ createList();
 
 function createList() {
     [...popularSeries]
+    .map(function(data) {
+        return {value: data, sort: Math.random()}
+    })
+
     .forEach(function (series, index) {
         const listItem = $('<li></li>').attr('data-index', index);
         listItem.html(`
