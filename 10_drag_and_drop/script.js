@@ -19,6 +19,14 @@ function createList() {
         return {value: data, sort: Math.random()}
     })
 
+    .sort(function(a,b) {
+        return (a.sort - b.sort)
+    })
+
+    .map(function(data) {
+        return data.value  
+    })
+
     .forEach(function (series, index) {
         const listItem = $('<li></li>').attr('data-index', index);
         listItem.html(`
@@ -29,5 +37,6 @@ function createList() {
         </div>
       `);
         $('#draggable-list').append(listItem);
+        
     })
 }
