@@ -82,17 +82,17 @@ body::after {
   background-color: #eaeaea;
 }
 
-.draggable-list .person-name {
+.draggable-list .series-name {
   margin: 0 20px 0 0;
   font-size: 22px;
   color: var(--text-color)
 }
 
-.draggable-list li.right .person-name {
+.draggable-list li.right .series-name {
   color: #3ae374;
 }
 
-.draggable-list li.wrong .person-name {
+.draggable-list li.wrong .series-name {
   color: #ff3838;
 }
 
