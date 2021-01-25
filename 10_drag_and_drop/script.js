@@ -12,6 +12,7 @@ const popularSeries = [
     'Ratched'
 ];
 const listItems = [];
+let dragStartIndex;
 createList();
 
 
@@ -41,7 +42,21 @@ function createList() {
       `;
       listItems.push(listItem);
       draggable_list.appendChild(listItem);
-      
+//         jquery part
+
+//         const listItem = $('<li></li>').attr('data-index', index);
+//         listItem.html(`
+//         <span class="number">${index + 1}</span>
+//         <div class="draggable" draggable="true">
+//           <p class="series-name">${series}</p>
+//           <i class="fas fa-grip-lines"></i>
+//         </div>
+//       `);
+//         listItems.push(listItem)
+//         $('#draggable-list').append(listItem);
+//     })
+// }
+//  $('#draggable-list').sortable();
       addEventListeners();
     });
 }
@@ -61,19 +76,20 @@ function addEventListeners() {
     item.addEventListener('dragleave', dragLeave);
   });
 }
-
-//         jquery part
-
-//         const listItem = $('<li></li>').attr('data-index', index);
-//         listItem.html(`
-//         <span class="number">${index + 1}</span>
-//         <div class="draggable" draggable="true">
-//           <p class="series-name">${series}</p>
-//           <i class="fas fa-grip-lines"></i>
-//         </div>
-//       `);
-//         listItems.push(listItem)
-//         $('#draggable-list').append(listItem);
-//     })
-// }
-//  $('#draggable-list').sortable();
+function dragStart() {
+  dragStartIndex = +this.closest('li').getAttribute('data-index');
+}
+function dragEnter() {
+  this.classList.add('over');
+}
+function dragLeave() {
+  this.classList.remove('over');
+}
+function dragOver(e) {
+  e.preventDefault();
+}
+function dragDrop() {
+  const dragEndIndex = +this.getAttribute('data-index');
+  swapItems(dragStartIndex, dragEndIndex);
+  this.classList.remove('over');
+}
