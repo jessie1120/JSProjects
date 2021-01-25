@@ -41,7 +41,25 @@ function createList() {
       `;
       listItems.push(listItem);
       draggable_list.appendChild(listItem);
+      
+      addEventListeners();
     });
+}
+
+function addEventListeners() {
+  const draggables = document.querySelectorAll('.draggable');
+  const dragListItems = document.querySelectorAll('.draggable-list li');
+
+  draggables.forEach(function (draggable) {
+    draggable.addEventListener('dragstart', dragStart);
+  });
+
+  dragListItems.forEach(function (item) {
+    item.addEventListener('dragover', dragOver);
+    item.addEventListener('drop', dragDrop);
+    item.addEventListener('dragenter', dragEnter);
+    item.addEventListener('dragleave', dragLeave);
+  });
 }
 
 //         jquery part
