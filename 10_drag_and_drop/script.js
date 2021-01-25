@@ -1,3 +1,4 @@
+const draggable_list = $('#draggable-list')[0]
 const popularSeries = [
     'The Queen’s Gambit',
     'Emily in Paris',
@@ -12,6 +13,7 @@ const popularSeries = [
 ];
 const listItems = [];
 createList();
+
 
 function createList() {
     [...popularSeries]
@@ -28,16 +30,32 @@ function createList() {
     })
 
     .forEach(function (series, index) {
-        const listItem = $('<li></li>').attr('data-index', index);
-        listItem.html(`
+      const listItem = document.createElement('li');
+      listItem.setAttribute('data-index', index);
+      listItem.innerHTML = `
         <span class="number">${index + 1}</span>
         <div class="draggable" draggable="true">
           <p class="series-name">${series}</p>
           <i class="fas fa-grip-lines"></i>
         </div>
-      `);
-        $('#draggable-list').append(listItem);
-        
-    })
+      `;
+      listItems.push(listItem);
+      draggable_list.appendChild(listItem);
+    });
 }
-$('#draggable-list').sortable();
+
+//         jquery part
+
+//         const listItem = $('<li></li>').attr('data-index', index);
+//         listItem.html(`
+//         <span class="number">${index + 1}</span>
+//         <div class="draggable" draggable="true">
+//           <p class="series-name">${series}</p>
+//           <i class="fas fa-grip-lines"></i>
+//         </div>
+//       `);
+//         listItems.push(listItem)
+//         $('#draggable-list').append(listItem);
+//     })
+// }
+//  $('#draggable-list').sortable();
